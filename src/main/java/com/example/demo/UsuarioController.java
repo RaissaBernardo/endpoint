@@ -1,46 +1,25 @@
 package com.example.demo;
-
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
+@RestController //indicar que a classe vai lidar com requisições HTTP
+public class usuarioController {
 
+    public Usuario us1;
 
-@RestController
-public class UsuarioController {
-
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
-
-    // lista s usuarios
-    @GetMapping("/usuarios")
-    public List<Usuario> getUsuarios() {
-        return usuarios;
-    }
-
-    // add usuarios
-    @PostMapping("/usuarios")
-    public String addUsuario(@RequestBody Usuario usuario) {
-        usuarios.add(usuario);
-        return "Usuário adicionado!";
-    }
-
-    //atualizar um usuário
-    @PutMapping("/usuarios/{cpf}")
-    public String updateUsuario(@PathVariable String cpf, @RequestBody Usuario usuario) {
-        for (Usuario u : usuarios) {
-            if (u.getCpf().equals(cpf)) {
-                u.setNome(usuario.getNome());
-                u.setTelefone(usuario.getTelefone());
-                return "Usuário atualizado!";
-            }
+    @GetMapping("/usuario")
+    public String getUsuario(){
+        if(us1 == null){
+            return "Nenhum usuario cadastrado";
+        } else {
+            return us1.toString();
         }
-        return "Usuário não encontrado!";
     }
 
-    //deletar um usuário
-    @DeleteMapping("/usuarios/{cpf}")
-    public String deleteUsuario(@PathVariable String cpf) {
-        usuarios.removeIf(u -> u.getCpf().equals(cpf));
-        return "Usuário removido!";
+    @PostMapping("/usuario")
+    public String postUsuario(@RequestBody Usuario usRecebido) {
+        us1 = usRecebido;
+        return "Usuário recebido com sucesso!";
     }
+
 }
