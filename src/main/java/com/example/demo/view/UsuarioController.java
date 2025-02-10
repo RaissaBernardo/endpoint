@@ -1,4 +1,5 @@
-package com.example.demo;
+package com.example.demo.view;
+import com.example.demo.model.Usuario;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +19,9 @@ public class UsuarioController {
 
     @PostMapping("/usuario")
     public String postUsuario(@RequestBody Usuario usRecebido) {
+        if (us1 == null) {
+            return "Nenhum usuário encontrado!";
+        }
         us1 = usRecebido;
         return "Usuário recebido com sucesso!";
     }
