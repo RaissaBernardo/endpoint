@@ -3,7 +3,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController //indicar que a classe vai lidar com requisições HTTP
-public class usuarioController {
+public class UsuarioController {
 
     public Usuario us1;
 
@@ -22,4 +22,21 @@ public class usuarioController {
         return "Usuário recebido com sucesso!";
     }
 
+    @PutMapping("/usuario")
+    public String putUsuario(@RequestBody Usuario usAtualizado) {
+        if (us1 == null) {
+            return "Nenhum usuário cadastrado para atualizar!";
+        }
+        us1 = usAtualizado;
+        return "Usuário atualizado com sucesso!";
+    }
+
+    @DeleteMapping("/usuario")
+    public String deletUsuario(@RequestBody Usuario usDeletado){
+        if (us1 == null) {
+            return "Nenhum usuário cadastrado para deletar!";
+        }
+        us1 = null;
+        return "Usuário deletado com sucesso!";
+    }
 }

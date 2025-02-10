@@ -2,32 +2,32 @@ package com.example.demo;
 
 public class Usuario {
     // Atributos
-    private int cpf;
-    private int tel;
+    private String cpf;
+    private String tel;
     private String nome;
 
     public Usuario() {
 
     }
-    public Usuario(int cpf, int tel, String nome) {
+    public Usuario(String cpf, String tel, String nome) {
         this.cpf = cpf;
         this.tel = tel;
         this.nome = nome;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
-    public int getTel() {
+    public String getTel() {
         return tel;
     }
 
-    public void setTel(int tel) {
+    public void setTel(String tel) {
         this.tel = tel;
     }
 
@@ -38,4 +38,14 @@ public class Usuario {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "cpf=" + cpf +
+                ", tel=" + tel +
+                ", nome='" + nome + '\'' +
+                '}';
+    }
+
 }
